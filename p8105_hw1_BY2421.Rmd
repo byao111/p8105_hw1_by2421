@@ -6,9 +6,10 @@ output: github_document
 
 ```{r}
 library(ggplot2)
+library(tidyverse)
 ```
 
-Problem 1
+##Problem 1
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
@@ -47,4 +48,32 @@ ggsave(
   plot = penguin_plot)
 ```
 
-Problem 2
+##Problem 2
+```{r}
+example_df = tibble(
+  normal_sample = rnorm(10),
+  is_positive = normal_sample > 0,
+  character_values = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+  factor_values = factor(c(
+    "low", "medium", "high", "low", "medium",
+    "high", "low", "medium", "high", "low"
+  ))
+)
+```
+
+```{r}
+mean(pull(example_df, normal_sample))
+mean(pull(example_df, is_positive))
+mean(pull(example_df, character_values))
+mean(pull(example_df, factor_values))
+```
+The mean works for numeric values, the mean works for logical values because it treated TRUE and FALSE as 1 and 0 so 0.4 is the proportion of values greater than o, the mean dooes not work for charactor and factor because mean() does not accept these types.
+
+```{r, results='hide', warning=FALSE}
+as.numeric(pull(example_df, is_positive))
+as.numeric(pull(example_df, character_values))
+as.numeric(pull(example_df, factor_values))
+```
+Logical value onverts TRUE to 1 and FALSE to 0, explaining why its mean works.
+Character value become NA because they do not represent numbers.
+Factor value converts to their integer codes. These codes represent category labels, so meaningless if taken average of.
