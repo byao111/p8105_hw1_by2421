@@ -1,0 +1,6 @@
+---
+title: "Homework 1"
+author: "Bowen Yao"
+output: github_document
+---
+
