@@ -8,6 +8,7 @@ output: github_document
 library(ggplot2)
 ```
 
+Problem 1
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
@@ -19,3 +20,31 @@ with mean body mass of `r round(mean(penguins$body_mass_g, na.rm = TRUE), 2)`g.
 The dataset has `r nrow(penguins)` rows and
 `r ncol(penguins)` columns. The mean flipper length is
 `r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm.
+
+```{r}
+penguin_plot = ggplot(
+  penguins,
+  aes(
+    x = bill_length_mm,
+    y = flipper_length_mm,
+    color = species
+  )
+) +
+  geom_point(na.rm = TRUE) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Flipper length (mm)",
+    color = "Species"
+  )
+
+penguin_plot
+```
+
+
+```{r}
+ggsave(
+  filename = "penguin_scatterplot.png",
+  plot = penguin_plot)
+```
+
+Problem 2
