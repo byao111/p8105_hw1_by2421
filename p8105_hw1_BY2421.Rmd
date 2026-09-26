@@ -4,3 +4,18 @@ author: "Bowen Yao"
 output: github_document
 ---
 
+```{r}
+library(ggplot2)
+```
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+The dataset contains measurements of 344 penguins of `r levels(penguins$species)` species;
+Variables include species, island, bill length, bill depth, flipper length, 
+body mass, sex, and year. Mean bill length is `r round(mean(penguins$bill_length_mm, na.rm = TRUE), 2)`mm, mean bill depth is `r round(mean(penguins$bill_depth_mm, na.rm = TRUE), 2)`mm, 
+with mean body mass of `r round(mean(penguins$body_mass_g, na.rm = TRUE), 2)`g.
+The dataset has `r nrow(penguins)` rows and
+`r ncol(penguins)` columns. The mean flipper length is
+`r round(mean(penguins$flipper_length_mm, na.rm = TRUE), 2)` mm.
